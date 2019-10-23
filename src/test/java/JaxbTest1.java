@@ -1,12 +1,13 @@
 
-
-
-
 import bean.*;
+import com.alibaba.fastjson.JSONObject;
+import org.jdom2.JDOMException;
 import org.junit.Test;
 import until.JaxbUtil;
+import until.XmlUtils;
 
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class JaxbTest1 {
      * @throws JAXBException
      */
     @Test
-    public void showMarshaller() {
+    public void showMarshaller() throws JDOMException, IOException {
         CEB311Message ceb311Message = new CEB311Message();
         ceb311Message.setGuid("556E1CFD-EDED-46B1-946C-B8022E42FC94");
         ceb311Message.setVersion("1.0");
@@ -49,6 +50,8 @@ public class JaxbTest1 {
 
         String str = JaxbUtil.convertToXml(ceb311Message);
         System.out.println(str);
+        JSONObject jsonObject = XmlUtils.xml2Json(str);
+        System.out.println(jsonObject);
     }
 
 }
